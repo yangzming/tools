@@ -104570,8 +104570,8 @@ if(content.locals) module.exports = content.locals;
 if(false) {
 	// When the styles change, update the <style> tags
 	if(!content.locals) {
-		module.hot.accept("!!../../../css-loader/index.js!./index.css", function() {
-			var newContent = require("!!../../../css-loader/index.js!./index.css");
+		module.hot.accept("!!../../../_css-loader@0.28.11@css-loader/index.js!./index.css", function() {
+			var newContent = require("!!../../../_css-loader@0.28.11@css-loader/index.js!./index.css");
 			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
 			update(newContent);
 		});
@@ -105195,7 +105195,7 @@ Component.options.__file = "resources/assets/js/components/ExampleComponent.vue"
 
 /* hot reload */
 if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
+  var hotAPI = require("vue-loader/node_modules/vue-hot-reload-api")
   hotAPI.install(require("vue"), false)
   if (!hotAPI.compatible) return
   module.hot.accept()
@@ -105343,8 +105343,37 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            options: [{
+                value: '选项1',
+                label: '香蕉'
+            }, {
+                value: '选项2',
+                label: '橘子'
+            }, {
+                value: '选项3',
+                label: '苹果'
+            }, {
+                value: '选项4',
+                label: '哈密瓜'
+            }, {
+                value: '选项5',
+                label: '葡萄'
+            }],
+            value: ''
+        };
+    },
     mounted: function mounted() {
         console.log('Component mounted.');
     }
@@ -105358,38 +105387,55 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row" }, [
-        _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
-          _c("div", { staticClass: "panel panel-default" }, [
+  return _c("div", { staticClass: "container" }, [
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-8 col-md-offset-2" }, [
+        _c(
+          "div",
+          { staticClass: "panel panel-default" },
+          [
             _c("div", { staticClass: "panel-heading" }, [
               _vm._v("Example Component")
             ]),
             _vm._v(" "),
             _c("div", { staticClass: "panel-body" }, [
-              _vm._v(
-                "\n                    I'm an example component!\n                "
-              )
-            ])
-          ])
-        ])
+              _vm._v("\n                    请选择语言\n                ")
+            ]),
+            _vm._v(" "),
+            _c(
+              "el-select",
+              {
+                attrs: { placeholder: "请选择" },
+                model: {
+                  value: _vm.value,
+                  callback: function($$v) {
+                    _vm.value = $$v
+                  },
+                  expression: "value"
+                }
+              },
+              _vm._l(_vm.options, function(item) {
+                return _c("el-option", {
+                  key: item.value,
+                  attrs: { label: item.label, value: item.value }
+                })
+              }),
+              1
+            )
+          ],
+          1
+        )
       ])
     ])
-  }
-]
+  ])
+}
+var staticRenderFns = []
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
+    require("vue-loader/node_modules/vue-hot-reload-api")      .rerender("data-v-7168fb6a", module.exports)
   }
 }
 
