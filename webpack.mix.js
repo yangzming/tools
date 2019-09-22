@@ -11,5 +11,39 @@ let mix = require('laravel-mix');
  |
  */
 
+Mix.listen('configReady', (webpackConfig) => {
+    // Exclude 'svg' folder from font loader
+    let fontLoaderConfig = webpackConfig.module.rules.find(rule => String(rule.test) === String(/(\.(png|jpe?g|gif|webp)$|^((?!font).)*\.svg$)/));
+    fontLoaderConfig.exclude = /(resources\/backend\/icons)/;
+});
+
+mix.webpackConfig({
+    resolve: {
+        alias: {
+            '@': path.resolve(__dirname, 'resources/backend'),
+        }
+    },
+    module: {
+        rules: [
+            {
+                test: /\.svg$/,
+                loader: 'svg-sprite-loader',
+                include: [path.resolve(__dirname, 'resources/backend/icons/svg')],
+                options: {
+                    symbolId: 'icon-[name]'
+                }
+            }
+        ],
+    }
+}).babelConfig({
+    plugins: ['dynamic-import-node']
+});
+
 mix.js('resources/assets/js/app.js', 'public/js')
    .sass('resources/assets/sass/app.scss', 'public/css');
+
+mix.js('resources/backend/main.js', 'public/js').extract(['vue', 'axios']);
+
+if (mix.inProduction()) {
+    mix.version();
+}
