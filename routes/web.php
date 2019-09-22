@@ -14,3 +14,14 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin', function () {
+    return view('admin.admin');
+});
+
+//Route::namespace('Admin')->prefix('admin')->name('admin.')->group(function () {
+//    Route::get('admin', function () {
+//        return view('admin');
+//    });
+//});
+
